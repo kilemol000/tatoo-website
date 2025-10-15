@@ -575,17 +575,14 @@
 </section>
 <footer id="section3"></footer>
 <script>
-    // 1. Изменение цвета при наведении (через CSS класс)
+
     document.addEventListener('DOMContentLoaded', function() {
         const hoverWords = document.querySelectorAll('.hover-word');
 
-        // Стандартные цвета
         const normalColor = '#FFFFFFFF';
         const hoverColor = '#BB8C5F';
 
-        // Обработчик для всех слов с классом .hover-word
         hoverWords.forEach(word => {
-            // Установка начального цвета
             word.style.color = normalColor;
 
             word.addEventListener('mouseenter', function() {
@@ -604,10 +601,8 @@
         const smallBoxes = document.querySelectorAll('.small-box');
         let currentActive = 0;
 
-        // Инициализация - первый квадрат активен
         updateActiveBox(0);
 
-        // Обработчики для стрелок
         upArrow.addEventListener('click', function() {
             if (currentActive > 0) {
                 updateActiveBox(currentActive - 1);
@@ -621,26 +616,21 @@
         });
 
         function updateActiveBox(newIndex) {
-            // Удаляем активный класс у всех квадратов
             smallBoxes.forEach(box => {
                 box.classList.remove('active');
             });
 
-            // Анимация: сначала текущий квадрат становится золотым
             smallBoxes[currentActive].classList.add('active');
 
-            // Затем через 300ms он возвращается в исходное состояние
             setTimeout(() => {
                 smallBoxes[currentActive].classList.remove('active');
 
-                // И только потом новый квадрат становится золотым
                 setTimeout(() => {
                     smallBoxes[newIndex].classList.add('active');
                     currentActive = newIndex;
                 }, 300);
             }, 300);
 
-            // Анимация нажатия на стрелку
             const arrow = newIndex < currentActive ? upArrow : downArrow;
             arrow.style.transform = 'scale(0.9)';
             setTimeout(() => {
@@ -650,30 +640,24 @@
     });
 
     function selectProduct(element) {
-        // Сначала убираем выделение у всех товаров
         const allProducts = document.querySelectorAll('.first-four-sold-catalog, .second-four-sold-catalog, .third-four-sold-catalog, .four-four-sold-catalog');
         allProducts.forEach(product => {
             product.classList.remove('product-selected', 'show-add-to-cart');
         });
 
-        // Затем применяем анимацию к выбранному товару
         element.classList.add('product-selected');
 
-        // Через небольшой интервал показываем кнопку "Добавить в корзину"
         setTimeout(() => {
             element.classList.add('show-add-to-cart');
         }, 200);
 
-        // Обработчик для кнопки "Добавить в корзину"
         const addToCartBtn = element.querySelector('.add-to-cart');
         addToCartBtn.addEventListener('click', function(e) {
-            e.stopPropagation(); // Предотвращаем всплытие события
+            e.stopPropagation();
             alert('Товар добавлен в корзину!');
-            // Здесь можно добавить логику для реального добавления в корзину
         });
     }
 
-    // Закрываем выбранный товар при клике вне его
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.first-four-sold-catalog, .second-four-sold-catalog, .third-four-sold-catalog, .four-four-sold-catalog')) {
             const allProducts = document.querySelectorAll('.first-four-sold-catalog, .second-four-sold-catalog, .third-four-sold-catalog, .four-four-sold-catalog');
@@ -685,29 +669,24 @@
     let currentlySelected = null;
 
     function selectProduct(element) {
-        // Если кликнули на уже выбранный товар - закрываем его
         if (currentlySelected === element) {
             element.classList.remove('product-selected', 'show-cart-btn');
             currentlySelected = null;
             return;
         }
 
-        // Снимаем выделение с предыдущего товара
         if (currentlySelected) {
             currentlySelected.classList.remove('product-selected', 'show-cart-btn');
         }
 
-        // Применяем анимацию к новому товару
         element.classList.add('product-selected');
 
-        // Задержка перед показом кнопки для лучшего визуального эффекта
         setTimeout(() => {
             element.classList.add('show-cart-btn');
         }, 200);
 
         currentlySelected = element;
 
-        // Обработчик для кнопки "Добавить в корзину"
         const addToCartBtn = element.querySelector('.add-to-cart-btn');
         addToCartBtn.onclick = function(e) {
             e.stopPropagation();
@@ -716,7 +695,6 @@
         };
     }
 
-    // Закрываем при клике вне товара
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.first-four-sold-catalog, .second-four-sold-catalog, .third-four-sold-catalog, .four-four-sold-catalog')) {
             if (currentlySelected) {
@@ -766,24 +744,20 @@
 
         let currentIndex = 0;
         const totalReviews = reviews.length;
-        const visibleReviews = 1; // Количество видимых отзывов одновременно
+        const visibleReviews = 1;
 
-        // Функция для получения актуальной ширины элемента карусели
         function getReviewWidth() {
             return window.innerWidth <= 481 ? 304 : 598;
         }
 
-        // Функция для получения актуального отступа между элементами
         function getGapWidth() {
             return window.innerWidth <= 481 ? 20 : 45;
         }
 
-        // Функция обновления карусели
         function updateCarousel() {
             const reviewWidth = getReviewWidth();
             const gapWidth = getGapWidth();
 
-            // Обновляем видимость отзывов
             reviews.forEach((review, index) => {
                 if (index >= currentIndex && index < currentIndex + visibleReviews) {
                     review.classList.add('active');
@@ -794,17 +768,14 @@
                 }
             });
 
-            // Обновляем точки-индикаторы
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active-dot', index === Math.floor(currentIndex / visibleReviews));
             });
 
-            // Позиционируем карусель с учетом текущего размера
             const offset = -currentIndex * (reviewWidth + gapWidth) / visibleReviews;
             carousel.style.transform = `translateX(${offset}px)`;
         }
 
-        // Следующий слайд
         function nextSlide() {
             if (currentIndex < totalReviews - visibleReviews) {
                 currentIndex++;
@@ -812,7 +783,6 @@
             }
         }
 
-        // Предыдущий слайд
         function prevSlide() {
             if (currentIndex > 0) {
                 currentIndex--;
@@ -820,7 +790,6 @@
             }
         }
 
-        // Клик по точкам
         dots.forEach(dot => {
             dot.addEventListener('click', function() {
                 currentIndex = parseInt(this.getAttribute('data-index')) * visibleReviews;
@@ -828,19 +797,15 @@
             });
         });
 
-        // Назначаем обработчики кнопок
+
         nextBtn.addEventListener('click', nextSlide);
         prevBtn.addEventListener('click', prevSlide);
 
-        // Обработчик изменения размера окна
         function handleResize() {
             updateCarousel();
         }
-
-        // Инициализация
         updateCarousel();
 
-        // Добавляем обработчик ресайза с троттлингом
         let resizeTimeout;
         window.addEventListener('resize', function() {
             clearTimeout(resizeTimeout);

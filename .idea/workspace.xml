@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="91ea80a0-85da-413e-873f-3da96e84bb1d" name="Changes" comment="work 13.05.25">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +35,12 @@
     &quot;assignee&quot;: &quot;kilemol000&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/kilemol000/tattoo-website.git&quot;,
-    &quot;accountId&quot;: &quot;9cfac167-b57e-4680-a54e-83470a65b0c9&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/kilemol000/tatoo-website.git",
+    "accountId": "9cfac167-b57e-4680-a54e-83470a65b0c9"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/index.html" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -57,7 +58,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#1 on detached22",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/kilem/Desktop/single_page",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
