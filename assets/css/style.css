@@ -783,7 +783,7 @@ body {
     position: absolute;
     object-fit: cover;
     z-index: 1;
-    bottom: 0px;
+    bottom: 0;
     left: 503px;
 }
 .paints{
@@ -1635,79 +1635,199 @@ body {
 .small-box-recall.active-dot {
     background-color: #BB8C5F;
 }
-.email-block{
-    width: 1598px;
-    height: 562px;
+.email-block {
     display: flex;
-    justify-content: flex-end;
-    float: right;
+    flex-wrap: wrap;
+    max-width: 100%;
+    justify-content: right;
+    margin-top: 100px;
 }
-.email-table-first{
+
+.email-content {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+}
+
+
+.email-title {
     font-family: "Forum", sans-serif;
     font-weight: 400;
     color: #3E424B;
-    font-size: 60px;
-    width: 560px;
-    height: 60px;
+    font-size: clamp(2rem, 5vw, 3.75rem); /* 32px - 60px */
+    line-height: 1.2;
+    margin: 0;
 }
-.email-table-second{
+
+.email-subtitle {
     font-family: "Jost", sans-serif;
     font-weight: 500;
     color: #3E424B;
-    font-size: 25px;
-    width: 523px;
-    height: 60px;
+    font-size: clamp(1rem, 2.5vw, 1.5625rem); /* 16px - 25px */
+    line-height: 1.4;
 }
-.tables-email-address{
+
+.email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
     font-family: "Jost", sans-serif;
     font-weight: 400;
     color: #636B78;
     font-size: 17px;
 }
-.email-field{
-    width: 392px;
+
+.form-input {
+    width: 100%;
+    max-width: 392px;
     height: 70px;
     background-color: #F5F5F5;
-}
-.tables-name-client{
+    border: none;
+    padding: 0 20px;
     font-family: "Jost", sans-serif;
-    font-weight: 400;
-    color: #636B78;
-    font-size: 17px;
+    font-size: 16px;
+    box-sizing: border-box;
 }
-.name-field{
-    width: 392px;
-    height: 70px;
-    background-color: #F5F5F5;
+
+.form-input:focus {
+    outline: 2px solid #BB8C5F;
+    outline-offset: -2px;
 }
-.consent-text{
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.checkbox-input {
+    display: none;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #636B78;
+    background: #F5F5F5;
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative;
+}
+
+.checkbox-input:checked + .checkbox-custom::after {
+    content: "✓";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #524336;
+    font-weight: bold;
+}
+
+.consent-text {
     font-family: "Jost", sans-serif;
     font-weight: 400;
     color: #636B78;
     font-size: 13px;
+    line-height: 1.4;
 }
-.email-description{
-    display: flex;
-    flex-wrap: wrap;
-}
-.bottom-under-email{
-    width: 275px;
+
+.subscribe-btn {
+    width: 100%;
+    max-width: 275px;
     height: 70px;
-    position: relative;
     border: 2px solid #BB8C5F;
     background-color: #524336;
+    font-family: "Jost", sans-serif;
     font-weight: 400;
-    font-size: 25px;
+    font-size: clamp(1.125rem, 2vw, 1.5625rem); /* 18px - 25px */
     color: #FAF6F2;
-    display: flex  ;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
     justify-content: center;
     align-items: center;
-    top: 35px;
-    right: 340px;
+}
+
+.subscribe-btn:hover {
+    background-color: #BB8C5F;
+    transform: translateY(-2px);
+}
+
+.email-image {
+    flex: 0 0 50%; /* Занимает половину блока */
+    display: flex;
+    justify-content: flex-end; /* Выравнивание по правому краю */
+}
+
+.email-image img {
+    width: 100%; /* Картинка подстраивается под родителя */
+    height: auto; /* Сохраняет пропорции */
+    object-fit: cover; /* Можно использовать, если хочешь обрезку при изменении контейнера */
+    max-width: 100%; /* Не выходит за пределы родителя */
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 768px) {
+    .email-block {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px 15px;
+    }
+
+    .email-content {
+        min-width: 100%;
+    }
+
+    .email-form {
+        gap: 20px;
+    }
+
+    .form-input {
+        height: 60px;
+    }
+
+    .subscribe-btn {
+        height: 60px;
+        max-width: 100%;
+    }
+
+    .checkbox-label {
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .email-title {
+        font-size: 1.75rem; /* 28px */
+    }
+
+    .email-subtitle {
+        font-size: 1rem; /* 16px */
+    }
+
+    .form-input {
+        height: 50px;
+    }
+
+    .subscribe-btn {
+        height: 50px;
+        font-size: 1.125rem; /* 18px */
+    }
 }
 
 
-@media screen and (max-width: 1376px) {
+@media screen and (max-width: 1440px) {
     .text-emails {
         left: 300px;
     }
@@ -1834,11 +1954,18 @@ body {
         top: 43px;
     }
     .left-button-review {
-        right: 1377px;
+        right: 1450px;
     }
     .right-button-review {
-        right: 715px;
+        right: 780px;
     }
+    .email-description{
+        position: relative;
+        left: 310px;
+    }
+    .bottom-under-email {
+        top: 535px;
+        right: 270px;
 }
 
 @media screen and (max-width: 1080px) {
@@ -2089,7 +2216,7 @@ body {
         width: 1024px;
     }
     .popular-brands {
-        width: 1080px;
+        width: 1024px;
         bottom: 120px;
     }
     .names-section {
@@ -2102,7 +2229,7 @@ body {
         display: flex;
     }
     .reviews-about-site {
-        margin-top: auto;
+        margin-top: 225px;
     }
     .recall-block {
         left: 230px;
@@ -2836,4 +2963,4 @@ body {
         top: 430px;
         right: 97px;
     }
-}
+}}

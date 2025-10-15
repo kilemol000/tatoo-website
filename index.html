@@ -549,27 +549,37 @@
         </div>
     </div>
     <div class="email-block">
-        <div class="email-description">
-            <div class="email-table-first">Узнавайте первыми</div>
-            <div class="email-table-second">Подпишитесь на новостную рассылку<br>
-                с самыми интересными новостями и акциями
+        <div class="email-content">
+            <div class="email-text">
+                <h2 class="email-title">Узнавайте первыми</h2>
+                <p class="email-subtitle">Подпишитесь на новостную рассылку с самыми интересными новостями и акциями</p>
             </div>
-            <div class="block-email-address">
-                <div class="tables-email-address">Эл. почта</div>
-                <div class="email-field"></div>
-            </div>
-            <div class="block-name-client">
-                <div class="tables-name-client">Имя</div>
-                <div class="name-field"></div>
-            </div>
-            <div class="data-consent-field">
-                <div class="consent-checkbox"></div>
-                <div class="consent-text">Вы соглашаетесь на обработку ваших персональных данных</div>
-            </div>
-            <div class="bottom-under-email"> Подписаться</div>
+
+            <form class="email-form">
+                <div class="form-group">
+                    <label class="form-label">Эл. почта</label>
+                    <input type="email" class="form-input" placeholder="Ваша эл. почта">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Имя</label>
+                    <input type="text" class="form-input" placeholder="Ваше имя">
+                </div>
+
+                <div class="consent-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="checkbox-input">
+                        <span class="checkbox-custom"></span>
+                        <span class="consent-text">Вы соглашаетесь на обработку ваших персональных данных</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="subscribe-btn">Подписаться</button>
+            </form>
         </div>
-        <div class="email-block-photo">
-            <img class="email-block-photo" src="assets/images/shutterstoc.png" alt="">
+
+        <div class="email-image">
+            <img src="assets/images/shutterstoc.png" alt="Новостная рассылка">
         </div>
     </div>
 </section>
