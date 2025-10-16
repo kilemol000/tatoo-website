@@ -1654,7 +1654,7 @@ body {
     font-family: "Forum", sans-serif;
     font-weight: 400;
     color: #3E424B;
-    font-size: clamp(2rem, 5vw, 3.75rem); /* 32px - 60px */
+    font-size: clamp(2rem, 5vw, 3.75rem);
     line-height: 1.2;
     margin: 0;
 }
@@ -1663,7 +1663,7 @@ body {
     font-family: "Jost", sans-serif;
     font-weight: 500;
     color: #3E424B;
-    font-size: clamp(1rem, 2.5vw, 1.5625rem); /* 16px - 25px */
+    font-size: clamp(1rem, 2.5vw, 1.5625rem);
     line-height: 1.4;
 }
 
@@ -1750,7 +1750,7 @@ body {
     background-color: #524336;
     font-family: "Jost", sans-serif;
     font-weight: 400;
-    font-size: clamp(1.125rem, 2vw, 1.5625rem); /* 18px - 25px */
+    font-size: clamp(1.125rem, 2vw, 1.5625rem);
     color: #FAF6F2;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1765,19 +1765,37 @@ body {
 }
 
 .email-image {
-    flex: 0 0 50%; /* Занимает половину блока */
+    flex: 0 0 50%;
     display: flex;
-    justify-content: flex-end; /* Выравнивание по правому краю */
+    justify-content: flex-end;
 }
 
 .email-image img {
-    width: 100%; /* Картинка подстраивается под родителя */
-    height: auto; /* Сохраняет пропорции */
-    object-fit: cover; /* Можно использовать, если хочешь обрезку при изменении контейнера */
-    max-width: 100%; /* Не выходит за пределы родителя */
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-width: 100%;
 }
 
-/* Адаптив для мобильных устройств */
+@media (max-width: 480px) {
+    .email-title {
+        font-size: 1.75rem;
+    }
+
+    .email-subtitle {
+        font-size: 1rem;
+    }
+
+    .form-input {
+        height: 50px;
+    }
+
+    .subscribe-btn {
+        height: 50px;
+        font-size: 1.125rem;
+    }
+}
+
 @media (max-width: 768px) {
     .email-block {
         flex-direction: column;
@@ -1806,26 +1824,6 @@ body {
         align-items: center;
     }
 }
-
-@media (max-width: 480px) {
-    .email-title {
-        font-size: 1.75rem; /* 28px */
-    }
-
-    .email-subtitle {
-        font-size: 1rem; /* 16px */
-    }
-
-    .form-input {
-        height: 50px;
-    }
-
-    .subscribe-btn {
-        height: 50px;
-        font-size: 1.125rem; /* 18px */
-    }
-}
-
 
 @media screen and (max-width: 1440px) {
     .text-emails {
@@ -1898,7 +1896,6 @@ body {
         object-fit: cover;
         top: auto;
         bottom: 80px;
-        width: 1370px;
     }
 
     .first-photo-product img {
@@ -2239,6 +2236,60 @@ body {
     }
     .right-button-review {
         right: 420px;
+    }
+    .left-button-review {
+        right: 1035px;
+    }
+    .right-button-review {
+        right: 364px;
+    }
+    .email-image{
+        display: none;
+    }
+    .email-block{
+        justify-content: center;
+    }
+    .email-form {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .form-group {
+        flex: 1 1 45%;
+        max-width: 300px;
+    }
+
+    .form-input {
+        height: 60px;
+        width: 100%;
+    }
+
+    .subscribe-btn {
+        flex: 0 0 auto;
+        height: 60px;
+        max-width: 200px;
+        margin-top: 0; /* чтобы не смещалась вниз */
+    }
+
+    /* Общая адаптация блока */
+    .email-block {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .email-text {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .email-content {
+        max-width: 800px;
+        width: 100%;
     }
 }
 @media screen and (max-width: 769px) {
