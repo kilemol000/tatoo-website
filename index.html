@@ -461,9 +461,15 @@
     </div>
     <div class="reviews-about-site">
         <div class="name-reviews-site">Отзывы</div>
+        <div class="carousel-track" id="carouselTrack">
         <div class="recall-block">
-            <div class="left-button-review">
-                <div class="left-button-review-triangle"></div>
+            <div class="review-buttons-container">
+                <div class="left-button-review">
+                    <div class="left-button-review-triangle"></div>
+                </div>
+                <div class="right-button-review">
+                    <div class="right-button-review-triangle"></div>
+                </div>
             </div>
             <div class="carousel-container">
                 <div class="recall-block-one">
@@ -537,9 +543,7 @@
                     <div class="grid-recall-block-2"></div>
                 </div>
             </div>
-            <div class="right-button-review">
-                <div class="right-button-review-triangle"></div>
-            </div>
+        </div>
         </div>
         <div class="five-small-box-recall-block">
             <div class="small-box-recall active-dot" data-index="0"></div>
@@ -822,6 +826,99 @@
             resizeTimeout = setTimeout(handleResize, 100);
         });
     });
+    class CarouselSwipe {
+        constructor(containerId) {
+            this.track = document.getElementById(containerId);
+            this.startX = 0;
+            this.currentX = 0;
+            this.isDragging = false;
+            this.currentIndex = 0;
+
+            this.init();
+        }
+
+        init() {
+            this.track.addEventListener('touchstart', this.handleTouchStart.bind(this));
+            this.track.addEventListener('touchmove', this.handleTouchMove.bind(this));
+            this.track.addEventListener('touchend', this.handleTouchEnd.bind(this));
+
+            // Для мыши (опционально)
+            this.track.addEventListener('mousedown', this.handleMouseDown.bind(this));
+            document.addEventListener('mousemove', this.handleMouseMove.bind(this));
+            document.addEventListener('mouseup', this.handleMouseUp.bind(this));
+        }
+
+        handleTouchStart(e) {
+            this.startX = e.touches[0].clientX;
+            this.isDragging = true;
+        }
+
+        handleTouchMove(e) {
+            if (!this.isDragging) return;
+
+            this.currentX = e.touches[0].clientX;
+            const diff = this.currentX - this.startX;
+
+            // Блокируем вертикальный скролл при горизонтальном свайпе
+            if (Math.abs(diff) > 10) {
+                e.preventDefault();
+            }
+        }
+
+        handleTouchEnd(e) {
+            if (!this.isDragging) return;
+
+            const diff = this.currentX - this.startX;
+            const swipeThreshold = 50; // минимальное расстояние свайпа
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    this.prevSlide(); // свайп вправо
+                } else {
+                    this.nextSlide(); // свайп влево
+                }
+            }
+
+            this.isDragging = false;
+        }
+
+        handleMouseDown(e) {
+            this.startX = e.clientX;
+            this.isDragging = true;
+        }
+
+        handleMouseMove(e) {
+            if (!this.isDragging) return;
+            this.currentX = e.clientX;
+        }
+
+        handleMouseUp(e) {
+            this.handleTouchEnd(e);
+        }
+
+        nextSlide() {
+            const slides = this.track.children;
+            this.currentIndex = (this.currentIndex + 1) % slides.length;
+            this.updateCarousel();
+        }
+
+        prevSlide() {
+            const slides = this.track.children;
+            this.currentIndex = (this.currentIndex - 1 + slides.length) % slides.length;
+            this.updateCarousel();
+        }
+
+        updateCarousel() {
+            const translateX = -this.currentIndex * 100;
+            this.track.style.transform = `translateX(${translateX}%)`;
+        }
+    }
+
+    // Инициализация
+    document.addEventListener('DOMContentLoaded', function() {
+        new CarouselSwipe('carouselTrack');
+    });
+
 
 </script>
 </body>
